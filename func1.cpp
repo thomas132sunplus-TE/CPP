@@ -1,5 +1,5 @@
 // 簡易互動式計算機
-// 支援：加、減、乘、除、次方、以 b 為底的對數、sin(x)、cos(x)
+// 支援：加、減、乘、除、次方、以 b 為底的對數、sin(x)、cos(x)、f6(x)=x^6
 // 使用者介面：選單 + 輸入數值並顯示結果
 
 #include <iostream>
@@ -43,6 +43,9 @@ public:
 
     // 餘弦（以弧度為單位）
     double cosx(double x) const { return std::cos(x); }
+
+    // 新增：f6(x) = x^6
+    double f6(double x) const { return x * x * x * x * x * x; }
 };
 
 // 清除 stdin 的剩餘資料（用於輸入錯誤後恢復）
@@ -96,9 +99,10 @@ int main() {
                   << "6) log(a,b)   (log base b of a)\n"
                   << "7) sin(x)     (x in radians)\n"
                   << "8) cos(x)     (x in radians)\n"
+                  << "9) f6(x) = x^6\n"
                   << "0) Exit\n";
-        // 讀取使用者選項（0-8）
-        int opt = read_int_choice(0, 8, "Choose an option: ");
+        // 讀取使用者選項（0-9）
+        int opt = read_int_choice(0, 9, "Choose an option: ");
 
         if (opt == 0) {
             // 使用者選離開
@@ -161,6 +165,12 @@ int main() {
                     // cos（輸入以弧度）
                     double x = read_double("x (radians) = ");
                     std::cout << "result = " << calc.cosx(x) << '\n';
+                    break;
+                }
+                case 9: {
+                    // f6(x) = x^6
+                    double x = read_double("x = ");
+                    std::cout << "result = " << calc.f6(x) << '\n';
                     break;
                 }
                 default:
