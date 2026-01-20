@@ -1,11 +1,14 @@
-﻿#include <iostream>
+﻿
+#include <iostream>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 
 int main() {
-    double x;
-    std::cout << "Enter x: ";
-    if (!(std::cin >> x)) return 0;
-    double y = std::pow(x, 6.0) + 1;
-    std::cout << "y = x^6 + 1 = " << y << std::endl;
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    double x = std::rand() % 100 + 1; // 1~100 的亂數
+    std::cout << "Random x: " << x << std::endl;
+    double y = std::pow(x, 2.0) + 100;
+    std::cout << "y = x^2 + 100 = " << y << std::endl;
     return 0;
 }
